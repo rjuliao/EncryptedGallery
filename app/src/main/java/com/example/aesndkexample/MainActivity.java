@@ -266,7 +266,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     byte[] k = sb.toString().getBytes(StandardCharsets.UTF_8);
                     File fileToDecode = new File(rutaArchivoADesencriptar);
 
-                    File data = decriptProcess(k, fileToDecode);
+                    File data;
+
+
+                    data = decriptProcess(k, fileToDecode);
 
                     Bitmap bitmap = BitmapFactory.decodeFile(data.getAbsolutePath());
                     showImageDialog(f.getName(), bitmap);
@@ -325,6 +328,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 String rutaToDecode = items.get(recyclerView.getChildAdapterPosition(v)).getRutaAbsoluta();
                 Log.i("RutaArchivoSeleccionado", rutaToDecode);
+
+
                 putInKeyDialog("Decode Key",
                         "Success decode",
                         "Failed decode",

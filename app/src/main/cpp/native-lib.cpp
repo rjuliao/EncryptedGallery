@@ -31,7 +31,7 @@ Java_com_example_aesndkexample_MainActivity_crypt(JNIEnv *env, jobject instance,
     if (len <= 0 || len >= MAX_LEN) {
         return NULL;
     }
-    syslog(LOG_CRIT, "Hola Mundo %u", len);
+    
 
     unsigned char *data = (unsigned char*) (env)->GetByteArrayElements(
             jarray, NULL);
