@@ -27,9 +27,10 @@
         />
 
     <Button
+        android:id="@+id/cameraButton"
+        style="@android:style/Widget.Button.Inset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn1_txt"
-        android:id="@+id/cameraButton"
-        android:fontFamily="@font/joseregular"/>
+        android:fontFamily="@font/joseregular"
+        android:text="@string/btn1_txt" />
 </LinearLayout>

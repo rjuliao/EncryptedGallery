@@ -419,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setUpKeyDialog("Encrypt Photo",
                     "Success encode",
                     "Failed encode",
-                    "Please, write a password of minimun 16 characters!");
+                    "Please, write a password of maximun 16 characters!");
         }
     }
 
