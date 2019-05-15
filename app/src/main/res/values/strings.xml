@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Encrypted Gallery</string>
+    <string name="btn1_txt">Encrypt a Photo</string>
+</resources>
