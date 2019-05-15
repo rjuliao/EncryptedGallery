@@ -7,7 +7,8 @@
     android:background="@drawable/background_redounded2"
     android:padding="5dp"
     android:layout_marginBottom="10dp"
-    android:layout_marginRight="5dp">
+    android:layout_marginRight="5dp"
+    >
 
     <ImageView
         android:id="@+id/image"
@@ -22,5 +23,6 @@
         android:text="nombre de fichero"
         android:gravity="center"
         android:textColor="@color/colorWhite"
+        android:fontFamily="@font/josesemibolditalic"
         android:textSize="10sp"/>
 </LinearLayout>

@@ -7,15 +7,15 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn1_txt"
-        android:id="@+id/cameraButton"/>
+
     <TextView
         android:id="@+id/textViewTest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/fl_txt"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:fontFamily="@font/josesemibold"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/usersRecyclerView"
@@ -23,6 +23,13 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:layout_weight="3"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn1_txt"
+        android:id="@+id/cameraButton"
+        android:fontFamily="@font/joseregular"/>
 </LinearLayout>

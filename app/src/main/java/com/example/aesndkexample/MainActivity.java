@@ -1,15 +1,20 @@
 package com.example.aesndkexample;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -97,7 +102,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 final String msgNegative,
                                 String msgTextViewDescription) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
+        TextView tv = new TextView(this);
+        tv.setText(title);
+        Typeface tf = ResourcesCompat.getFont(context, R.font.josebold);
+        tv.setTypeface(tf);
+        tv.setTextSize(30);
+        builder.setCustomTitle(tv);
         builder.setCancelable(false);
         View viewInflated = LayoutInflater.from(this)
                 .inflate(R.layout.fragment_put_key,
@@ -232,12 +242,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public native byte[] crypt(byte[] data, byte[] key, long time, int mode);
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void putInKeyDialog(String title, final String msgPositive,
                                 final String msgNegative,
                                 final String msgTextViewDescription,
                                 final String rutaArchivoADesencriptar) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
+        TextView tv = new TextView(this);
+        tv.setText(title);
+        Typeface tf = ResourcesCompat.getFont(context, R.font.josebold);
+        tv.setTypeface(tf);
+        tv.setTextSize(30);
+        builder.setCustomTitle(tv);
         builder.setCancelable(false);
         View viewInflated = LayoutInflater.from(this)
                 .inflate(R.layout.fragment_put_key,
@@ -294,7 +311,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showImageDialog(String imageName, Bitmap bitmap) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(imageName);
+        TextView tv = new TextView(this);
+        tv.setText(imageName);
+        Typeface tf = ResourcesCompat.getFont(context, R.font.joselightitalic);
+        tv.setTypeface(tf);
+        tv.setTextSize(25);
+        builder.setCustomTitle(tv);
         View viewInflated = LayoutInflater.from(this)
                 .inflate(R.layout.fragment_image_dialog,
                         (ViewGroup) findViewById(android.R.id.content), false);
@@ -324,16 +346,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mAdapter = new MyImagesAdapter(this, items);
         ((MyImagesAdapter) mAdapter).setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 String rutaToDecode = items.get(recyclerView.getChildAdapterPosition(v)).getRutaAbsoluta();
                 Log.i("RutaArchivoSeleccionado", rutaToDecode);
 
 
-                putInKeyDialog("Decode Key",
+                putInKeyDialog("Decript a File",
                         "Success decode",
                         "Failed decode",
-                        "Please, put in the key to decode the selected photo:",
+                        "Password of the photo to decrypt:",
                         rutaToDecode);
             }
         });
@@ -393,10 +416,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             updateRecycler();
 
-            setUpKeyDialog("Encode Key",
+            setUpKeyDialog("Encrypt Photo",
                     "Success encode",
                     "Failed encode",
-                    "Please, put in a Key (Size 16) to encode this photo:");
+                    "Please, write a password of minimun 16 characters!");
         }
     }
 
@@ -481,16 +504,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while ((line = bufferedReader.readLine()) != null) {
-                Log.i("Linea", "readFromFile: " + line);
                 readline = line.split(";");
                 if (readline[1].equals(filename)) { //lee nombre del archivo
                     if (readline[0].equals(key)) {//si la contraseñas son iguales
-                        Log.i("llave", "readFromFile: " + readline[0]);
                         bufferedReader.close();
                         fileReader.close();
                         return true;
                     } else {
-                        Toast.makeText(context, "Clave Incorrecta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Wrong Password. Try again!", Toast.LENGTH_SHORT).show();
                         bufferedReader.close();
                         fileReader.close();
                         return false;

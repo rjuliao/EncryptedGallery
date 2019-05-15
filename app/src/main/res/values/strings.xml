@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Encrypted Gallery</string>
     <string name="btn1_txt">Encrypt a Photo</string>
+    <string name="fl_txt">Choose a file to decrypt</string>
+    <string name="key_txt">Put in key</string>
 </resources>
